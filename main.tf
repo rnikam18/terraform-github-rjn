@@ -1,3 +1,19 @@
+terraform{
+    backend "azurerm" {
+        resource_group_name = local.resource_group_name
+        storage_account_name = "rjnstorage0018"
+        container_name = "tfstatefile"
+        key = "dev.terraform.tfstate"
+    }
+}
+
+
+
+
+
+
+
+
 locals {
   resource_group_name="rjn"
   location="Central India"
