@@ -4,6 +4,27 @@ name: terraform workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      command:
+        description: 'Select Terraform Action'
+        required: true
+        default: 'plan'
+        type: choice
+        options:
+          - plan
+          - apply
+          - destroy
+      resource:
+        description: 'Select the resource'
+        required: true
+        default: 'azurerm_virtual_network'
+        type: choice
+        options:
+          - azurerm_virtual_network
+          - azurerm_subnet
+          - azurerm_network_interface
+          - azurerm_public_ip
+          - azurerm_network_security_group
 
 jobs:
   terraform:
@@ -24,7 +45,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-            terraform_version: 
+            terraform_version: 3.92.0
     
       - name: Terraform Init
         run: terraform init
@@ -34,6 +55,8 @@ jobs:
     
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
-         
+
+      - name: Teraform destroy
+        run: terraform destroy -auto-approve
        
     
