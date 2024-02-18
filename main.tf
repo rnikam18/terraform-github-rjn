@@ -33,7 +33,7 @@ resource "azurerm_virtual_network" "appnetwork" {
   address_space       = [local.virtual_network.address_space]  
   
    depends_on = [
-     azurerm_resource_group.appgrp
+     local.resource_group_name
    ]
   }
 
@@ -80,7 +80,7 @@ resource "azurerm_public_ip" "appip" {
   location            = local.location
   allocation_method   = "Static"
  depends_on = [
-   azurerm_resource_group.appgrp
+   local.resource_group_name
  ]
 }
 
@@ -102,7 +102,7 @@ resource "azurerm_network_security_group" "appnsg" {
   }
 
   depends_on = [
-    azurerm_resource_group.appgrp
+    local.resource_group_name
   ]
 }
 
