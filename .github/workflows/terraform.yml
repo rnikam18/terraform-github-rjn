@@ -18,44 +18,22 @@ jobs:
       run:
         shell: bash
     steps:
-      - name: Get code
-        uses: actions/checkout@v3
-
-      - name: 'Terraform Format'
-        uses: hashicorp/terraform-github-actions@master
+      - name: Checkout code
+        uses: actions/checkout@v2
+    
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
         with:
-          tf_actions_version: 3.92.0
-          tf_actions_subcommand: 'fmt'
-          tf_actions_working_dir: '.'
-
-      - name: 'Terraform init'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 3.92.0
-          tf_actions_subcommand: 'init'
-          tf_actions_working_dir: '.'
-
-      - name: 'Terraform validate'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 3.92.0
-          tf_actions_subcommand: 'validate'
-          tf_actions_working_dir: '.'
-
-      - name: 'Terraform plan'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 3.92.0
-          tf_actions_subcommand: 'plan'
-          tf_actions_working_dir: '.'
-
-      - name: 'Terraform apply'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 3.92.0
-          tf_actions_subcommand: 'apply'
-          tf_actions_working_dir: '.'
-
+            terraform_version: 3.92.0
+    
+      - name: Terraform Init
+        run: terraform init
+    
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+    
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
          
        
     
