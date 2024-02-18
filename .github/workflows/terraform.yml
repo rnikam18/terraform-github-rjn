@@ -51,7 +51,6 @@ jobs:
         id: init
         run: |
           echo "Change Directory"
-          cd "${{ github.event.inputs.resource }}"
           terraform init 
     
       - name: Terraform Plan
