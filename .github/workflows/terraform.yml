@@ -38,8 +38,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: .github/workflows/resource
-
+        working-directory: ./
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
