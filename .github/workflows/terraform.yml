@@ -13,14 +13,18 @@ on:
         options:
           - plan
           - apply
+          - destroy-dryrun
           - destroy
       resource:
         description: 'Select the resource'
         required: true
-        default: resource
+        default: 'virtual_network'
         type: choice
         options:
-          - resource
+          - virtual_network
+          - storage_account
+          
+
 
 
 jobs:
@@ -69,6 +73,24 @@ jobs:
           terraform plan -input=false
           sleep 10
           terraform apply -auto-approve
+        continue-on-error: false
+
+      - name: Terraform Destroy Dryrun
+        id: destroy-dryrun
+        if: github.event.inputs.command == 'destroy-dryrun'
+        run: |
+          echo "Change Directory"
+          cd ${{ github.event.inputs.resource }}
+          terraform plan -destroy -out=tfplan
+        continue-on-error: false
+
+      - name: Terraform destroy
+        id: destroy
+        if: github.event.inputs.command == 'destroy'
+        run: |
+          echo "Change Directory"
+          cd ${{ github.event.inputs.resource }}
+          terraform destroy -auto-approve
         continue-on-error: false
         
        

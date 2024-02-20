@@ -111,3 +111,6 @@ resource "azurerm_subnet_network_security_group_association" "appnsglink" {
   network_security_group_id = azurerm_network_security_group.appnsg.id
 }
 
+resource "appinterface" "name" {
+  
+}
