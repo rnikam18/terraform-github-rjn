@@ -23,7 +23,7 @@ on:
         options:
           - virtual_network
           - storage_account
-          
+
 
 
 
@@ -39,6 +39,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: ./resource
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
