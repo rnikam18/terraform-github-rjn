@@ -23,7 +23,7 @@ terraform{
         resource_group_name = "rjn"
         storage_account_name = "storage202412"
         container_name = "terraformvar"
-        key = "dev.terraform.tfstate"
+        key = "dev.storage_account.tfstate"
     }
 }
 
