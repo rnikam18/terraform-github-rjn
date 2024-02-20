@@ -22,7 +22,7 @@ terraform{
     backend "azurerm" {
         resource_group_name = "rjn"
         storage_account_name = "storage202412"
-        container_name = "tfstatefile"
+        container_name = "terraformvar"
         key = "dev.terraform.tfstate"
     }
 }
