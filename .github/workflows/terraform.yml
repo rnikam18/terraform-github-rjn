@@ -17,14 +17,11 @@ on:
       resource:
         description: 'Select the resource'
         required: true
-        default: 'azurerm_virtual_network'
+        default: resource
         type: choice
         options:
-          - azurerm_virtual_network
-          - azurerm_subnet
-          - azurerm_network_interface
-          - azurerm_public_ip
-          - azurerm_network_security_group
+          - resource
+
 
 jobs:
   terraform:
@@ -38,7 +35,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -52,6 +48,7 @@ jobs:
         id: init
         run: |
           echo "Change Directory"
+          cd ${{ github.event.inputs.resource }}
           terraform init 
     
       - name: Terraform Plan
@@ -73,8 +70,6 @@ jobs:
           sleep 10
           terraform apply -auto-approve
         continue-on-error: false
-
-      #- name: Teraform destroy
-      #run: terraform destroy -auto-approve */
+        
        
     
