@@ -20,7 +20,7 @@ locals {
 
 terraform{
     backend "azurerm" {
-        resource_group_name = local.resource_group_name
+        resource_group_name = "rjn"
         storage_account_name = "storage202412"
         container_name = "tfstatefile"
         key = "dev.terraform.tfstate"
