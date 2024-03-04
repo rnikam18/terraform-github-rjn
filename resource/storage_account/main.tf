@@ -1,30 +1,19 @@
-locals {
-  resource_group_name="rjn"
-  location="Central India"
-  virtual_network={
-    name="app-network"
-    address_space="10.0.0.0/16"
-  }
-}
-
 terraform{
-    backend "aaws_s3_bucket" {
-        resource_group_name = "rjn"
-        storage_account_name = "storage202412"
-        container_name = "terraformvar"
-        key = "dev.s3.tfstate"
+    backend "aws_s3_bucket" {
+        region = "us-west-2"
+        bucket = "terraform-202412"
+        key = "dev.aws_s3_bucket.tfstate"
+        encrypt = true
+        dynamodb_table = "terraform-202412"  
     }
 }
 
+#Create S3 bucket
+resource "aws_s3_bucket" "rjnstorage0019" {
+  bucket = "rjnstorage0019"
+}
 
-resource "azurerm_storage_account" "rjnstorage0019" {
-  name                     = "rjnstorage0019"
-  resource_group_name      = local.resource_group_name
-  location                 = local.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-
-depends_on = [
-     local.resource_group_name
-   ]
+# Create a VPC
+resource "aws_vpc" "example" {
+  cidr_block = "10.0.0.0/16"
 }
