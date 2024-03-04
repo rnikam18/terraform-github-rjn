@@ -5,25 +5,14 @@ locals {
     name="app-network"
     address_space="10.0.0.0/16"
   }
-
-  subnets=[
-    {
-      name="subnetA"
-      address_prefix="10.0.0.0/24"
-    },
-    {
-      name="subnetB"
-      address_prefix="10.0.1.0/24"
-    }
-  ]
 }
 
 terraform{
-    backend "azurerm" {
+    backend "aaws_s3_bucket" {
         resource_group_name = "rjn"
         storage_account_name = "storage202412"
         container_name = "terraformvar"
-        key = "dev.storage_account.tfstate"
+        key = "dev.s3.tfstate"
     }
 }
 
