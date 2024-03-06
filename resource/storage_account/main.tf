@@ -1,6 +1,6 @@
 #Create S3 bucket
-resource "aws_s3_bucket" "rjnstorage0019" {
-  bucket = "rjnstorage0019"
+resource "aws_s3_bucket" "rjnstorage0018" {
+  bucket = "rjnstorage0018"
 }
 
 # Create a VPC
