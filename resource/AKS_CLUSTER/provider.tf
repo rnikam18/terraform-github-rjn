@@ -26,7 +26,6 @@ terraform {
     resource_group_name   = "rjn-rg"
     storage_account_name  = "rjnstorage"
     container_name        = "tfstate"
-    key                   = "terraform.tfstate"
-    depends_on = [azurerm_storage_account.rjnstorage]
+    key                   = "terraform.tfstate" 
   }
 }
