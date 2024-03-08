@@ -1,9 +1,7 @@
-#Create S3 bucket
-resource "aws_s3_bucket" "rjnstorage0018" {
-  bucket = "rjnstorage0018"
-}
-
-# Create a VPC
-resource "aws_vpc" "example" {
-  cidr_block = "10.0.0.0/16"
+resource "azurerm_storage_account" "rjnstorage1" {
+  name                     = "rjnstorage1"
+  resource_group_name      = "rjn-rg"
+  location                 = "Central India"
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
 }

@@ -18,6 +18,7 @@ resource "azurerm_storage_account" "rjnstorage" {
   location                 = azurerm_resource_group.rjn.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  depends_on = [ azurerm_resource_group.rjn ]
 }
 
 terraform {
