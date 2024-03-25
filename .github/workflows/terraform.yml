@@ -33,7 +33,6 @@ jobs:
       AZ_SECRET_ID: ${{secrets.AZ_SECRET_ID}}
       AZ_TENANT_ID: ${{secrets.AZ_TENANT_ID}}
       AZ_SUBSCRIPTION_ID: ${{secrets.AZ_SUBSCRIPTION_ID}}
-    environment: dev
     defaults:
       run:
         shell: bash
