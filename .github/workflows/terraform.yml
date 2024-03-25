@@ -23,19 +23,16 @@ on:
         options:
           - virtual_network
           - storage_account
-
-
-
+          - AKS_CLUSTER
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
     env:
-      ARM_CLIENT_ID: ${{secrets.AZURE_AD_CLIENT_ID}}
-      ARM_CLIENT_SECRET: ${{secrets.AZURE_AD_SECRET}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_AD_SUBSCRIPTION_ID}}
-      ARM_TENANT_ID: ${{secrets.AZURE_AD_TENANT_ID}}
-    environment: dev
+      ARM_CLIENT_ID: ${{secrets.AZ_CLIENT_ID}}
+      ARM_CLIENT_SECRET: ${{secrets.AZ_SECRET_ID}}
+      ARM_TENANT_ID: ${{secrets.AZ_TENANT_ID}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.AZ_SUBSCRIPTION_ID}}
     defaults:
       run:
         shell: bash

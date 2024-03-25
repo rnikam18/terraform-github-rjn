@@ -5,12 +5,21 @@ terraform {
       version = "3.92.0"
     }
   }
+  backend "azurerm" {
+    resource_group_name   = "rjn"
+    storage_account_name  = "rohit181818"
+    container_name        = "tfstate"
+    key                   = "terraform.tfstate"
+  }
 }
 
+
+resource "azurerm_resource_group" "rjn" {
+  name= "rjn"
+  location= "Central India"
+}
 provider "azurerm" {
-  subscription_id = "f89c9fbd-eb95-45b1-b08a-ac68effe3c93"
-  tenant_id = "3385756d-d0cd-480a-b29b-dd3a76f458db"
-  client_id = "dfa1a378-1edc-4e71-b9be-4949c4a0dd28"
-  client_secret = "ODC8Q~osnQ6t5buhaOvnrWzeHOB7LxhxYFqsna2o"
-  features {}  
+  subscription_id = "d9f3caad-04a6-4196-9cc3-df80deac1625"
+  tenant_id       = "f166b17c-0e5b-401f-9ac1-bf6af2fa78e9"
+  features {}
 }
