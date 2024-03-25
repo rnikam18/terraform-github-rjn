@@ -5,26 +5,21 @@ terraform {
       version = "3.92.0"
     }
   }
+   backend "azurerm" {
+    resource_group_name   = "rjn"
+    storage_account_name  = "tfstatestorage09e"
+    container_name        = "tfstate"
+    key                   = "terraform.tfstate"
+  }
 }
+
 
 resource "azurerm_resource_group" "rjn" {
   name= "rjn-rg"
   location= "Central India"
 }
-
-resource "azurerm_storage_account" "rjnstorage" {
-  name                     = "rjnstorage"
-  resource_group_name      = azurerm_resource_group.rjn.name
-  location                 = azurerm_resource_group.rjn.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
-
-terraform {
-  backend "azurerm" {
-    resource_group_name   = "rjn-rg"
-    storage_account_name  = "rjnstorage"
-    container_name        = "tfstate"
-    key                   = "terraform.tfstate"
-  }
+provider "azurerm" {
+  subscription_id = "d9f3caad-04a6-4196-9cc3-df80deac1625"
+  tenant_id       = "f166b17c-0e5b-401f-9ac1-bf6af2fa78e9"
+  features {}
 }
