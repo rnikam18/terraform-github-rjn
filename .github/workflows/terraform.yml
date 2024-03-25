@@ -25,9 +25,6 @@ on:
           - storage_account
           - AKS_CLUSTER
 
-
-
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
